@@ -1,0 +1,55 @@
+# ─────────────────────────────────────────────────
+#  Arbetsförmedlingen Job Application Agent Config
+# ─────────────────────────────────────────────────
+
+# ── Application pacing ──
+daily_cap_initial: 60
+daily_cap_ramp_levels: [80, 100]
+ramp_after_stable_days: 3
+run_duration_hours: 24
+buffer_seconds: 300
+buffer_jitter_seconds: [10, 45]
+
+# ── Company-level limits ──
+company_weekly_cap: 2
+company_monthly_cap: 6
+duplicate_window_days: 30
+
+# ── Quality gate ──
+fit_threshold: 40
+
+# ── Failure handling ──
+max_consecutive_failures: 10
+cooldown_minutes_on_spike: 60
+max_retries_per_job: 3
+
+# ── Discovery ──
+job_fetch_interval_minutes: 15
+jobsearch_api_base: "https://jobsearch.api.jobtechdev.se"
+jobsearch_api_version: "search"
+
+# ── Application behaviour ──
+apply_confirm_mode: false
+always_english: true
+headless_browser: false
+browser_user_data_dir: "./secrets/browser_profile"
+
+# ── Scope ──
+locations: ["ALL_SWEDEN"]
+roles:
+  - "Software"
+  - "AI/ML"
+  - "Data"
+  - "DevOps"
+  - "Cybersecurity"
+  - "Graduate/Intern"
+
+# ── Paths ──
+master_cv_path: "data/master_cv.json"
+truth_path: "data/truth.json"
+taxonomy_path: "data/skill_taxonomy.json"
+resume_template_path: "templates/resume_ats.tex.j2"
+cover_letter_template_path: "templates/cover_letter.tex.j2"
+db_path: "db/agent.sqlite"
+output_dir: "outputs"
+log_dir: "logs"

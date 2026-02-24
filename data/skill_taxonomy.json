@@ -1,0 +1,74 @@
+{
+  "role_keywords": {
+    "software": [
+      "software engineer", "software developer", "backend developer",
+      "frontend developer", "full-stack", "fullstack", "web developer",
+      "application developer", "systems developer", "programmerare",
+      "mjukvaruutvecklare", "systemutvecklare", "webbutvecklare",
+      "java developer", "python developer", ".net developer",
+      "c++ developer", "mobile developer", "react developer",
+      "node.js developer", "junior developer", "graduate developer",
+      "trainee developer", "it-trainee", "trainee program"
+    ],
+    "ai_ml": [
+      "machine learning", "ml engineer", "data scientist", "ai engineer",
+      "deep learning", "nlp engineer", "computer vision", "mlops",
+      "research engineer", "ai researcher", "ai/ml", "generative ai",
+      "llm engineer", "ai developer", "junior data scientist"
+    ],
+    "data": [
+      "data engineer", "data analyst", "data architect", "bi developer",
+      "analytics engineer", "etl developer", "database administrator",
+      "dataingenjör", "dataanalytiker", "big data", "junior data engineer"
+    ],
+    "devops": [
+      "devops", "site reliability", "sre", "platform engineer",
+      "cloud engineer", "infrastructure engineer", "release engineer",
+      "kubernetes", "docker", "ci/cd engineer", "drifttekniker"
+    ],
+    "cybersecurity": [
+      "security engineer", "cybersecurity", "penetration tester",
+      "security analyst", "soc analyst", "security architect",
+      "information security", "it-säkerhet", "säkerhetsanalytiker",
+      "devsecops", "ethical hacker", "security consultant",
+      "cyber security", "security specialist"
+    ],
+    "graduate_intern": [
+      "graduate program", "trainee", "internship", "intern",
+      "praktik", "praktikant", "thesis worker", "entry level",
+      "junior", "new grad", "nyexaminerad", "young professional"
+    ]
+  },
+  "skill_keywords": [
+    "python", "java", "javascript", "typescript", "c++", "c#",
+    "rust", "ruby", "scala", "kotlin", "swift", "php", "sql",
+    "react", "angular", "vue", "node.js", "django", "flask", "fastapi",
+    "spring", ".net", "express.js", "mongodb",
+    "aws", "azure", "gcp", "docker", "kubernetes", "terraform",
+    "jenkins", "github actions", "gitlab ci", "ansible", "ci/cd",
+    "postgresql", "mysql", "redis", "elasticsearch",
+    "kafka", "rabbitmq", "spark", "hadoop", "airflow",
+    "pytorch", "tensorflow", "scikit-learn", "pandas", "numpy",
+    "keras", "nltk", "spacy", "langchain", "ollama", "lightgbm",
+    "opencv", "matplotlib",
+    "git", "linux", "agile", "scrum", "jira",
+    "graphql", "grpc", "microservices", "devops",
+    "nmap", "burp suite", "wireshark", "splunk", "metasploit",
+    "nessus", "owasp", "siem",
+    "html", "css", "matlab", "latex",
+    "jwt", "blockchain",
+    "machine learning", "deep learning", "nlp", "computer vision",
+    "xgboost"
+  ],
+  "exclude_keywords": [
+    "internship only", "unpaid", "volunteer only"
+  ],
+  "title_exclude_patterns": [
+    "senior", "lead", "principal", "staff engineer",
+    "senior manager", "director", "vp of", "chief", "head of",
+    "architect",
+    "receptionist", "nurse", "teacher", "driver", "chef",
+    "cleaner", "warehouse", "mechanic", "electrician",
+    "10+ years", "15+ years", "8+ years", "7+ years"
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "personal": {
+    "first_name": "Jake",
+    "last_name": "Morrison",
+    "email": "jake.morrison@example.com",
+    "cv_email": "jake.morrison.dev@example.com",
+    "phone": "+46 701234567",
+    "phone_local": "701234567",
+    "birth_year": "1998",
+    "gender": "Man",
+    "personnummer": "YYYYMMDD-XXXX"
+  },
+  "addresses": {
+    "default": {
+      "street": "Storgatan 12",
+      "postal_code": "111 22",
+      "city": "Stockholm",
+      "full": "Storgatan 12, 111 22 Stockholm"
+    },
+    "stockholm": {
+      "street": "Storgatan 12",
+      "postal_code": "111 22",
+      "city": "Stockholm",
+      "full": "Storgatan 12, 111 22 Stockholm"
+    },
+    "malmo": {
+      "street": "Kungsgatan 5",
+      "postal_code": "211 49",
+      "city": "Malmö",
+      "full": "Kungsgatan 5, 211 49 Malmö"
+    }
+  },
+  "form_defaults": {
+    "salary_expectation_sek_month": 35000,
+    "notice_period": "Immediate",
+    "notice_period_months": 0,
+    "relocation": true,
+    "work_mode": "Any",
+    "willing_to_travel": true,
+    "start_date": "Immediate",
+    "drivers_license": false,
+    "swedish_fluency": "Basic",
+    "english_fluency": "Native"
+  },
+  "education": [
+    {
+      "degree": "MSc Computer Science",
+      "institution": "KTH Royal Institute of Technology",
+      "year": "2026",
+      "location": "Stockholm, Sweden"
+    },
+    {
+      "degree": "BSc Software Engineering",
+      "institution": "University of California, Berkeley",
+      "year": "2023",
+      "location": "Berkeley, CA, USA"
+    }
+  ],
+  "languages": [
+    { "language": "English", "level": "Native" },
+    { "language": "Swedish", "level": "Basic (SFI Level B)" }
+  ],
+  "legal": {
+    "eu_citizen": false,
+    "work_permit_sweden": true,
+    "right_to_work": true
+  },
+  "login": {
+    "email": "YOUR_LOGIN_EMAIL",
+    "password": "YOUR_PASSWORD_HERE"
+  },
+  "links": {
+    "linkedin": "https://www.linkedin.com/in/your-linkedin-profile/",
+    "github": "https://github.com/your-github-username",
+    "portfolio": ""
+  },
+  "extra_documents": {
+    "degree_certificate": "data/degree_certificate.pdf",
+    "transcript": "data/transcript.pdf",
+    "sample_work": "data/sample_work.pdf"
+  }
+}

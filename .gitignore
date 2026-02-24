@@ -1,0 +1,69 @@
+# ═══════════════════════════════════════════
+#  PERSONAL DATA — NEVER COMMIT THESE
+# ═══════════════════════════════════════════
+data/truth.json
+data/master_cv.json
+data/degree_certificate.pdf
+data/transcript.pdf
+data/sample_work.pdf
+data/Sample_Work.pdf
+data/*.pdf
+
+# Browser profile (contains cookies/sessions)
+secrets/
+browser_profile/
+
+# ═══════════════════════════════════════════
+#  RUNTIME OUTPUTS
+# ═══════════════════════════════════════════
+outputs/
+logs/
+db/*.db
+db/*.db-journal
+*.log
+
+# ═══════════════════════════════════════════
+#  PYTHON
+# ═══════════════════════════════════════════
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.eggs/
+venv/
+.venv/
+env/
+.env
+
+# ═══════════════════════════════════════════
+#  LATEX BUILD ARTIFACTS
+# ═══════════════════════════════════════════
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.out
+*.synctex.gz
+*.toc
+
+# ═══════════════════════════════════════════
+#  IDE / EDITOR
+# ═══════════════════════════════════════════
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ═══════════════════════════════════════════
+#  MISC
+# ═══════════════════════════════════════════
+*.bak
+*.tmp
+.pytest_cache/
+.ruff_cache/

@@ -1,0 +1,174 @@
+{
+  "name": "Jake Morrison",
+  "summary": "Results-driven Computer Science graduate with hands-on experience in AI/ML, cybersecurity, and full-stack development. Completed master's thesis at Ericsson Research on AI-driven network optimization, with internships at Spotify (Backend), Google (AI), and CrowdStrike (Security). Proficient in Python, TensorFlow, cloud infrastructure, and modern security tools. Passionate about building scalable, intelligent systems.",
+  "contact": {
+    "name": "Jake Morrison",
+    "email": "jake.morrison.dev@example.com",
+    "phone": "+46 701234567",
+    "location": "Stockholm, Sweden",
+    "linkedin": "linkedin.com/in/your-linkedin-profile",
+    "linkedin_url": "https://www.linkedin.com/in/your-linkedin-profile/",
+    "github": "github.com/your-github-username",
+    "github_url": "https://github.com/your-github-username"
+  },
+  "skills": {
+    "Languages": ["Python", "JavaScript/TypeScript", "Java", "C/C++", "SQL", "Go", "Bash"],
+    "Frameworks & Libraries": ["React", "Node.js", "Express.js", "TensorFlow", "PyTorch", "Flask", "Django", "FastAPI"],
+    "Cloud & DevOps": ["Docker", "Kubernetes", "AWS (EC2, S3, Lambda)", "Azure", "Terraform", "GitHub Actions", "CI/CD"],
+    "Data & ML": ["Pandas", "NumPy", "Scikit-learn", "PostgreSQL", "MongoDB", "Redis", "Apache Kafka", "Spark"],
+    "Security": ["Burp Suite", "Wireshark", "Nmap", "YARA", "OWASP Top 10", "SIEM (Splunk/ELK)"],
+    "Tools": ["Git", "Linux", "Jira", "Figma", "Postman", "LaTeX"]
+  },
+  "education": [
+    {
+      "institution": "KTH Royal Institute of Technology",
+      "degree": "MSc Computer Science — Specialization in AI & Security",
+      "location": "Stockholm, Sweden",
+      "start": "Aug 2024",
+      "end": "Jun 2026",
+      "gpa": "4.8/5.0",
+      "courses": [
+        "Applied Machine Learning",
+        "Deep Learning",
+        "Software Security",
+        "Malware Analysis",
+        "Cloud Computing",
+        "Distributed Systems",
+        "Natural Language Processing"
+      ]
+    },
+    {
+      "institution": "University of California, Berkeley",
+      "degree": "BSc Software Engineering",
+      "location": "Berkeley, CA, USA",
+      "start": "Aug 2019",
+      "end": "May 2023",
+      "gpa": "3.78/4.0",
+      "courses": [
+        "Data Structures & Algorithms",
+        "Operating Systems",
+        "Computer Networks",
+        "Database Systems",
+        "Software Architecture & Design Patterns",
+        "Security in Computing"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "company": "Ericsson Research",
+      "role": "AI Research Intern (Master's Thesis)",
+      "location": "Stockholm, Sweden",
+      "start": "Jan 2026",
+      "end": "Jun 2026",
+      "bullets": [
+        "Developed an AI-driven predictive maintenance framework for 5G base stations using Python, TensorFlow, and time-series analysis, reducing false alerts by 35\\%.",
+        "Designed real-time data pipelines processing 10K+ telemetry readings per minute using Apache Kafka and PostgreSQL.",
+        "Collaborated with cross-functional engineering teams to integrate ML models into Ericsson's network monitoring dashboards.",
+        "Evaluated knowledge distillation techniques to compress inference models for edge deployment on resource-constrained hardware."
+      ]
+    },
+    {
+      "company": "Spotify",
+      "role": "Backend Engineering Intern",
+      "location": "Stockholm, Sweden",
+      "start": "Jun 2025",
+      "end": "Aug 2025",
+      "bullets": [
+        "Built microservices in Java and Python handling 50K+ requests/sec for the podcast recommendation engine.",
+        "Implemented A/B testing infrastructure that improved playlist engagement metrics by 12\\%.",
+        "Deployed services using Docker and Kubernetes on GCP with fully automated CI/CD pipelines."
+      ]
+    },
+    {
+      "company": "Google",
+      "role": "AI/ML Summer Intern",
+      "location": "Mountain View, CA, USA",
+      "start": "Jun 2022",
+      "end": "Sep 2022",
+      "bullets": [
+        "Trained and fine-tuned NLP models for intent classification in Google Assistant, improving accuracy by 8\\% on multilingual benchmarks.",
+        "Built data pipelines in Apache Beam processing 100M+ daily utterances for model training.",
+        "Presented findings to a team of 30+ engineers; two techniques adopted into production pipeline."
+      ]
+    },
+    {
+      "company": "CrowdStrike",
+      "role": "Security Engineering Intern",
+      "location": "Austin, TX, USA",
+      "start": "Jun 2021",
+      "end": "Aug 2021",
+      "bullets": [
+        "Developed automated malware classification rules using YARA and behavioral analysis on 5,000+ sandboxed samples.",
+        "Built a threat intelligence enrichment pipeline integrating VirusTotal, Shodan, and internal telemetry feeds.",
+        "Contributed to Falcon OverWatch threat hunting operations, identifying 3 previously unknown C2 infrastructure patterns."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "NeuralCompress — Model Compression Toolkit",
+      "tech": "Python, PyTorch, ONNX, Docker",
+      "date": "2025",
+      "bullets": [
+        "Built a knowledge distillation pipeline achieving 4x model compression with only 2\\% accuracy loss on CIFAR-10 and ImageNet subsets.",
+        "Implemented quantization-aware training and structured pruning strategies for edge deployment on Raspberry Pi and Jetson Nano."
+      ]
+    },
+    {
+      "name": "CloudCart — Full-Stack E-Commerce Platform",
+      "tech": "React, Node.js, MongoDB, Docker, Kubernetes, Stripe",
+      "date": "2024",
+      "bullets": [
+        "Developed a production-grade e-commerce platform with real-time inventory management, Stripe payments, and JWT auth.",
+        "Containerized with Docker, orchestrated on Kubernetes with horizontal auto-scaling, health checks, and rolling deployments."
+      ]
+    },
+    {
+      "name": "ThreatHunter — Malware Analysis Suite",
+      "tech": "Python, YARA, Docker, ELK Stack",
+      "date": "2024",
+      "bullets": [
+        "Created an automated malware detection system combining static YARA rules with dynamic behavioral analysis in sandboxed containers.",
+        "Built a SOC analyst dashboard with Elasticsearch, Logstash, and Kibana for real-time threat visualization and alerting."
+      ]
+    },
+    {
+      "name": "SmartTraffic — IoT Traffic Optimization",
+      "tech": "Python, TensorFlow Lite, Raspberry Pi, MQTT",
+      "date": "2023",
+      "bullets": [
+        "Designed an ML-powered traffic signal optimization system reducing average intersection wait times by 28\\%.",
+        "Deployed inference models on Raspberry Pi edge devices using TensorFlow Lite with real-time MQTT sensor data."
+      ]
+    },
+    {
+      "name": "SecureChat — End-to-End Encrypted Messenger",
+      "tech": "Go, React Native, WebSocket, Signal Protocol",
+      "date": "2023",
+      "bullets": [
+        "Built a cross-platform encrypted messaging app implementing the Signal Protocol (Double Ratchet, X3DH key agreement).",
+        "Achieved sub-100ms message delivery latency using Go WebSocket servers with Redis pub/sub for horizontal scaling."
+      ]
+    }
+  ],
+  "certifications": [
+    "AWS Certified Solutions Architect – Associate (2024)",
+    "Google TensorFlow Developer Certificate (2024)",
+    "CompTIA Security+ (2023)",
+    "Certified Kubernetes Application Developer — CKAD (2024)"
+  ],
+  "achievements": [
+    "KTH Dean's List — Top 5\\% of master's program (2025)",
+    "1st Place, HackStockholm 2025 — AI for Sustainability track (team of 4)",
+    "UC Berkeley Honors in Software Engineering — magna cum laude (2023)",
+    "Published paper on neural network compression at NeurIPS Workshop 2025",
+    "Google Summer of Code contributor — TensorFlow project (2022)"
+  ],
+  "extracurricular": [
+    "Open Source Contributor — 200+ merged PRs to scikit-learn, FastAPI, and Hugging Face Transformers",
+    "KTH AI Society — Vice President, organized 12 technical workshops with 500+ attendees",
+    "Mentor at Code for Sweden — taught Python and web development to 40+ career-changers",
+    "Competitive Programming — Codeforces rating 1750+ (Expert), 50+ LeetCode contests"
+  ]
+}
