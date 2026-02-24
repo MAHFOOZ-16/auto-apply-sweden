@@ -1,7 +1,6 @@
 """Export tailored resume and cover letter LaTeX files to PDF."""
 
 import logging
-import os
 import shutil
 import subprocess
 import tempfile
