@@ -2,10 +2,9 @@
 
 import json
 import logging
-import re
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Set
+from typing import Any, Dict, List
 
 from agent import States
 from agent.db import AgentDB
@@ -207,7 +206,7 @@ class Tailor:
                                  location: str, description: str,
                                  keywords: List[str]) -> Dict[str, Any]:
         contact = self.cv.get("contact", {})
-        form = self.truth.get("form_defaults", {})
+        _form = self.truth.get("form_defaults", {})
         top_skills = keywords[:5] if keywords else ["Python", "machine learning"]
         address = _pick_address(location, self.truth)
 
@@ -234,7 +233,7 @@ class Tailor:
                                       location: str, description: str,
                                       keywords: List[str]) -> str:
         """Plain-text cover letter for 'Personligt brev' textareas."""
-        form = self.truth.get("form_defaults", {})
+        _form = self.truth.get("form_defaults", {})
         contact = self.cv.get("contact", {})
         top_skills = keywords[:5] if keywords else ["Python", "machine learning"]
         address = _pick_address(location, self.truth)

@@ -3,11 +3,10 @@
 import logging
 import time
 from datetime import datetime, date
-from typing import Any, Dict, List
+from typing import Any, Dict
 
 import requests
 
-from agent import States
 from agent.db import AgentDB
 
 logger = logging.getLogger("agent.fetcher")

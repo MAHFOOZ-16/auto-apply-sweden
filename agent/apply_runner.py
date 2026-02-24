@@ -11,7 +11,11 @@ Key changes from V1:
   - No max assist-tab limit (can open up to daily_cap tabs)
 """
 
-import json, logging, random, re, time
+import json
+import logging
+import random
+import re
+import time
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -25,7 +29,7 @@ from agent import States
 from agent.db import AgentDB
 from agent.platform_classifier import classify_platform
 from agent.answer_library import AnswerLibrary
-from agent.tailor import _pick_address, _pick_city, _pick_postal, _pick_street
+from agent.tailor import _pick_city, _pick_postal, _pick_street
 
 logger = logging.getLogger("agent.apply_runner")
 
@@ -372,7 +376,7 @@ class ApplyRunner:
             # Timeout → fall back to ASSIST (leave tab open for human)
             logger.warning("  ⏰ Timeout: %s — falling back to ASSIST", e)
             return self._assist(job, page, artifact_dir, ss,
-                                f"Timeout — page may still be usable")
+                                "Timeout — page may still be usable")
         except Exception as e:
             # Any error → fall back to ASSIST (leave tab open for human)
             logger.warning("  ⚠️ Error: %s — falling back to ASSIST", e)
@@ -400,7 +404,7 @@ class ApplyRunner:
                               resume_path, cover_path, artifact_dir,
                               ss, loc, cover_text, job_keywords) -> str:
         """Fill form fields step by step, handle Nästa, then submit."""
-        jid = job["job_id"]
+        _ = job["job_id"]
         max_steps = platform.get("max_steps", 3)
         has_unknown_mandatory = False
         cover_textarea_used = False
@@ -471,7 +475,7 @@ class ApplyRunner:
                 if has_unknown_mandatory:
                     return self._assist(
                         job, page, artifact_dir, ss,
-                        f"Unknown mandatory field(s) — needs human review")
+                        "Unknown mandatory field(s) — needs human review")
 
                 # Click final submit
                 logger.info("  🚀 Clicking FINAL submit")
@@ -482,7 +486,7 @@ class ApplyRunner:
                     logger.error("  Submit click failed: %s", e)
                     return self._assist(
                         job, page, artifact_dir, ss,
-                        f"Submit button click failed — please submit manually")
+                        "Submit button click failed — please submit manually")
 
                 self._ss(page, artifact_dir, ss)
                 return self._verify_submission(job, page, artifact_dir, ss)
@@ -495,7 +499,7 @@ class ApplyRunner:
                 if has_unknown_mandatory:
                     return self._assist(
                         job, page, artifact_dir, ss,
-                        f"Unknown mandatory field(s) before Nästa")
+                        "Unknown mandatory field(s) before Nästa")
 
                 try:
                     next_btn.click()
@@ -769,11 +773,17 @@ class ApplyRunner:
                 # URL-type inputs → try LinkedIn/GitHub
                 if itype == "url":
                     if _m(ids, ["linkedin", "linked"]):
-                        _type(el, linkedin); filled += 1; continue
+                        _type(el, linkedin)
+                        filled += 1
+                        continue
                     elif _m(ids, ["github", "git"]):
-                        _type(el, github); filled += 1; continue
+                        _type(el, github)
+                        filled += 1
+                        continue
                     elif linkedin:
-                        _type(el, linkedin); filled += 1; continue
+                        _type(el, linkedin)
+                        filled += 1
+                        continue
                     continue
 
                 # Skip already-filled fields
@@ -814,30 +824,40 @@ class ApplyRunner:
                 if _m(ids, ["bekräfta e-post", "bekräfta email",
                             "confirm email", "repeat email", "verify email",
                             "confirm_email"]):
-                    _type(el, email); filled += 1; continue
+                    _type(el, email)
+                    filled += 1
+                    continue
 
                 # ── Email ──
                 if _m(ids, ["e-postadress", "e-post", "email", "e-mail"]) \
                         and itype in ("email", "text", ""):
-                    _type(el, email); filled += 1; continue
+                    _type(el, email)
+                    filled += 1
+                    continue
 
                 # ── First name ──
                 if _m(ids, ["förnamn", "first name", "first_name",
                             "fname", "firstname", "given_name"]):
-                    _type(el, first); filled += 1; continue
+                    _type(el, first)
+                    filled += 1
+                    continue
 
                 # ── Last name ──
                 if _m(ids, ["efternamn", "last name", "last_name",
                             "lname", "lastname", "surname",
                             "family_name"]):
-                    _type(el, last); filled += 1; continue
+                    _type(el, last)
+                    filled += 1
+                    continue
 
                 # ── Full name ──
                 if (_m(ids, ["name", "namn"])
                     and not _m(ids, ["first", "last", "för", "efter",
                                      "fname", "lname", "user", "company",
                                      "företag", "firma"])):
-                    _type(el, f"{first} {last}"); filled += 1; continue
+                    _type(el, f"{first} {last}")
+                    filled += 1
+                    continue
 
                 # ── Phone / Mobil ──
                 if _m(ids, ["mobiltelefon", "mobil", "mobile",
@@ -849,27 +869,36 @@ class ApplyRunner:
                         _type(el, phone_digits)
                     else:
                         _type(el, phone_raw)
-                    filled += 1; continue
+                    filled += 1
+                    continue
 
                 # ── Address ──
                 if (_m(ids, ["adress", "address", "gatuadress", "street"])
                     and not _m(ids, ["e-post", "email"])):
-                    _type(el, street); filled += 1; continue
+                    _type(el, street)
+                    filled += 1
+                    continue
 
                 # ── City / Ort ──
                 if _m(ids, ["stad", "city", "postort"]) or \
                         re.search(r'\bort\b', ids):
-                    _type(el, city); filled += 1; continue
+                    _type(el, city)
+                    filled += 1
+                    continue
 
                 # ── Postal code ──
                 if _m(ids, ["postnummer", "postal", "zip", "postkod"]):
-                    _type(el, postal); filled += 1; continue
+                    _type(el, postal)
+                    filled += 1
+                    continue
 
                 # ── LinkedIn ──
                 if _m(ids, ["linkedin", "linked in", "linked-in",
                             "linkedinprofil", "linkedin url",
                             "linkedin profile"]) and linkedin:
-                    _type(el, linkedin); filled += 1; continue
+                    _type(el, linkedin)
+                    filled += 1
+                    continue
 
                 # ── GitHub / portfolio / website ──
                 if _m(ids, ["github", "portfolio", "website",
@@ -877,7 +906,9 @@ class ApplyRunner:
                             "personal website", "web site"]):
                     url = github or linkedin
                     if url:
-                        _type(el, url); filled += 1; continue
+                        _type(el, url)
+                        filled += 1
+                        continue
 
                 # ── Generic URL field (catch-all for social profiles) ──
                 if (_m(ids, ["url", "profil", "profile link",
@@ -886,31 +917,40 @@ class ApplyRunner:
                                  "photo", "bild"])):
                     url = linkedin or github
                     if url:
-                        _type(el, url); filled += 1; continue
+                        _type(el, url)
+                        filled += 1
+                        continue
 
                 # ── Stat/Provins/Province ──
                 if _m(ids, ["stat/provins", "provins", "state",
                             "province", "region"]):
-                    _type(el, "Skåne"); filled += 1; continue
+                    _type(el, "Skåne")
+                    filled += 1
+                    continue
 
                 # ── Salary ──
                 if _m(ids, ["salary", "lön", "löneanspråk",
                             "lönekrav", "compensation"]):
-                    _type(el, "35000"); filled += 1; continue
+                    _type(el, "35000")
+                    filled += 1
+                    continue
 
                 # ── Personnummer (only if it looks like it) ──
                 if _m(ids, ["personnummer", "personal.*number",
                             "social security"]):
                     pnr = p.get("personnummer", "")
                     if pnr:
-                        _type(el, pnr); filled += 1; continue
+                        _type(el, pnr)
+                        filled += 1
+                        continue
 
                 # ── Try answer library for anything else ──
                 answer = self.answers.match_field(ids, job_keywords)
                 if answer:
                     _type(el, answer)
                     logger.info("  ✓ '%s' → answer library", lbl[:30])
-                    filled += 1; continue
+                    filled += 1
+                    continue
 
                 # Unknown field
                 if is_required:
@@ -930,11 +970,14 @@ class ApplyRunner:
     def _fill_select(self, el, ids, lbl, job_keywords):
         """Fill a <select> dropdown."""
         if _m(ids, ["födelseår", "birth", "born"]):
-            _sel_opt(el, "2003"); return
+            _sel_opt(el, "2003")
+            return
         if _m(ids, ["kön", "gender"]):
-            _sel_opt(el, "Man"); return
+            _sel_opt(el, "Man")
+            return
         if _m(ids, ["framtidenkontor"]):
-            _sel_opt(el, "Malmö"); return
+            _sel_opt(el, "Malmö")
+            return
         if _m(ids, ["titel", "title"]) and not _m(ids, ["job", "position"]):
             pass  # leave default
             return
@@ -988,7 +1031,8 @@ class ApplyRunner:
                     try:
                         el = page.locator(sel).first
                         if el.is_visible(timeout=1500):
-                            el.click(); _delay(0.3, 0.6)
+                            el.click()
+                            _delay(0.3, 0.6)
                             logger.info("  ✓ Radio: %s", target)
                             break
                     except Exception:
@@ -1017,7 +1061,8 @@ class ApplyRunner:
                 links = page.locator(sel).all()
                 for link in links:
                     if link.is_visible(timeout=1000):
-                        link.click(); _delay(0.5, 1)
+                        link.click()
+                        _delay(0.5, 1)
                         clicked = True
                         logger.info("  ✓ Clicked: %s", sel[:40])
             except Exception:
@@ -1124,7 +1169,8 @@ class ApplyRunner:
                         fi.set_input_files(str(resume))
                         done_cv = True
                         logger.info("  ✓ Resume via name/id")
-                        _delay(1, 2); break
+                        _delay(1, 2)
+                        break
                 except Exception:
                     pass
 
@@ -1196,7 +1242,8 @@ class ApplyRunner:
                             if fi.count() > 0:
                                 fi.set_input_files(str(resume))
                                 logger.info("  ✓ CV drag-drop area")
-                                _delay(1, 2); return
+                                _delay(1, 2)
+                                return
                         except Exception:
                             continue
             except Exception:
@@ -1352,7 +1399,8 @@ class ApplyRunner:
                 for el in page.locator(sel).all():
                     txt = (el.inner_text() or "").lower()
                     if any(k in txt for k in kws):
-                        el.click(); _delay(0.3, 0.6)
+                        el.click()
+                        _delay(0.3, 0.6)
                         logger.info("  ✓ Clicked: %s", txt[:50])
             except Exception:
                 pass
@@ -1391,7 +1439,8 @@ class ApplyRunner:
         ).all():
             try:
                 if not cb.is_checked():
-                    cb.check(force=True); _delay(0.2, 0.4)
+                    cb.check(force=True)
+                    _delay(0.2, 0.4)
             except Exception:
                 pass
 
@@ -1451,7 +1500,8 @@ class ApplyRunner:
             try:
                 el = page.locator(sel).first
                 if el.is_visible(timeout=2000):
-                    _type(el, self._login_email); break
+                    _type(el, self._login_email)
+                    break
             except Exception:
                 continue
         try:
@@ -1466,7 +1516,9 @@ class ApplyRunner:
             try:
                 btn = page.locator(sel).first
                 if btn.is_visible(timeout=2000):
-                    btn.click(); _delay(3, 5); break
+                    btn.click()
+                    _delay(3, 5)
+                    break
             except Exception:
                 continue
         _delay(2, 3)
@@ -1493,7 +1545,9 @@ class ApplyRunner:
         btn = self._find_button(page, SEL_APPLY)
         if btn:
             try:
-                btn.click(); _delay(2, 4); return True
+                btn.click()
+                _delay(2, 4)
+                return True
             except Exception:
                 pass
         return False
@@ -1572,16 +1626,16 @@ class ApplyRunner:
         if location:
             print(f"   Location: {location}")
         if key_reqs:
-            print(f"   ┌─ What they're looking for:")
+            print("   ┌─ What they're looking for:")
             for req in key_reqs[:8]:
                 print(f"   │  • {req}")
-            print(f"   └─")
+            print("   └─")
         if why_suitable:
-            print(f"   ┌─ Why you're suitable (copy-paste):")
+            print("   ┌─ Why you're suitable (copy-paste):")
             print(f"   │  {why_suitable}")
-            print(f"   └─")
-        print(f"   Tab left open — complete manually when ready")
-        print(f"   Agent continues with next job immediately")
+            print("   └─")
+        print("   Tab left open — complete manually when ready")
+        print("   Agent continues with next job immediately")
         print(f"{'='*70}\n")
 
         # ── Append to assist_cheatsheet.csv ──
@@ -1597,14 +1651,14 @@ class ApplyRunner:
                 f.write(f"URL: {url}\n")
                 f.write(f"Assist Reason: {reason}\n")
                 f.write(f"\n{'─'*50}\n")
-                f.write(f"KEY REQUIREMENTS:\n")
+                f.write("KEY REQUIREMENTS:\n")
                 for req in key_reqs[:10]:
                     f.write(f"  • {req}\n")
                 f.write(f"\n{'─'*50}\n")
-                f.write(f"WHY YOU'RE SUITABLE (copy-paste):\n")
+                f.write("WHY YOU'RE SUITABLE (copy-paste):\n")
                 f.write(f"{why_suitable}\n")
                 f.write(f"\n{'─'*50}\n")
-                f.write(f"FULL JOB DESCRIPTION:\n\n")
+                f.write("FULL JOB DESCRIPTION:\n\n")
                 f.write(description or "(no description available)")
             logger.debug("  Saved job_description.txt → %s", desc_path)
         except Exception:
@@ -1791,7 +1845,8 @@ def _sel_opt(sel_el, value: str):
         lambda: sel_el.select_option(label=value),
     ]:
         try:
-            method(); return
+            method()
+            return
         except Exception:
             pass
     try:
@@ -1800,7 +1855,8 @@ def _sel_opt(sel_el, value: str):
             if value.lower() in txt.lower():
                 v = opt.get_attribute("value")
                 if v:
-                    sel_el.select_option(value=v); return
+                    sel_el.select_option(value=v)
+                    return
     except Exception:
         pass
 

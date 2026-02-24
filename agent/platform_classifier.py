@@ -8,8 +8,7 @@ Returns a platform dict with:
 """
 
 import logging
-import re
-from typing import Any, Dict, Optional
+from typing import Any, Dict
 
 from playwright.sync_api import Page
 

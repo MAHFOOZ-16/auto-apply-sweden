@@ -216,8 +216,8 @@ class Agent:
                 # User pressed Ctrl+C — DETACH from browser, leave it running
                 self._generate_summary()
                 print(f"\n  🟢 Browser left running with {remaining} tab(s).")
-                print(f"     Finish your applications, then close Chrome manually.")
-                print(f"     Agent process exiting — your tabs are SAFE.\n")
+                print("     Finish your applications, then close Chrome manually.")
+                print("     Agent process exiting — your tabs are SAFE.\n")
                 logger.info("Detaching — %d assist tabs left in browser",
                             remaining)
                 # Do NOT call stop_browser() — leave Chrome alive
@@ -258,19 +258,19 @@ class Agent:
 
         print(f"\n{'='*70}")
         print(f"  ⏳ DAILY CAP REACHED — {assist_count} ASSIST tab(s) still open!")
-        print(f"")
-        print(f"  The browser will stay open so you can finish these applications.")
-        print(f"  The agent checks every 30s for completed tabs.")
-        print(f"")
+        print("")
+        print("  The browser will stay open so you can finish these applications.")
+        print("  The agent checks every 30s for completed tabs.")
+        print("")
         for jid, page in self.runner.assist_tabs.items():
             try:
                 title = page.title()[:50] if not page.is_closed() else "(closed)"
             except Exception:
                 title = "(unknown)"
             print(f"    🖐 {jid[:20]} — {title}")
-        print(f"")
-        print(f"  When you finish all tabs, the agent exits automatically.")
-        print(f"  Press Ctrl+C to exit — browser stays open with your tabs.")
+        print("")
+        print("  When you finish all tabs, the agent exits automatically.")
+        print("  Press Ctrl+C to exit — browser stays open with your tabs.")
         print(f"{'='*70}\n")
 
         try:
@@ -288,7 +288,7 @@ class Agent:
 
                 remaining = len(self.runner.assist_tabs)
                 if remaining == 0:
-                    print(f"\n  ✅ All assist tabs completed! Exiting cleanly.")
+                    print("\n  ✅ All assist tabs completed! Exiting cleanly.")
                     break
 
                 # Sleep in small chunks so Ctrl+C is responsive
@@ -523,13 +523,13 @@ class Agent:
             "═" * 60,
             "",
             f"   ✅ CONFIRMED:    {n_confirmed}  "
-            f"(confirmation page detected)",
+            "(confirmation page detected)",
             f"   ❓ UNCERTAIN:    {n_uncertain}  "
-            f"(submitted, no confirmation)",
+            "(submitted, no confirmation)",
             f"   🖐 ASSIST:       {n_assist}  "
-            f"(tabs left open for you)",
+            "(tabs left open for you)",
             f"   ❌ FAILED:       {n_failed}  "
-            f"(could not submit)",
+            "(could not submit)",
             f"   📊 TOTAL:        {total}",
             "",
         ]

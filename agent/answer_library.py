@@ -4,10 +4,8 @@ Matches textarea / input labels to prepared answers using regex patterns.
 Falls back to the truth.json form_defaults when no specific match is found.
 """
 
-import json
 import logging
 import re
-from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
 logger = logging.getLogger("agent.answer_library")
@@ -218,7 +216,6 @@ class AnswerLibrary:
         Returns the option value/label to select, or None.
         """
         label_lower = label.lower()
-        opts_lower = [o.lower() for o in options]
 
         # Birth year
         if re.search(r"(födelseår|birth.*year|born)", label_lower):
