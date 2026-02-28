@@ -77,7 +77,7 @@ nano data/truth.json        # Personal info, addresses, login credentials
 nano data/master_cv.json    # Full CV data (education, experience, projects)
 ```
 
-**⚠️ IMPORTANT:** Never commit `data/truth.json` or `data/master_cv.json` — they contain your personal info. They're in `.gitignore` by default.
+**⚠️ IMPORTANT:** Never commit `data/truth.json` or `data/master_cv.json` -- they contain your personal info. They're in `.gitignore` by default.
 
 ### (Optional) Add Extra Documents
 
@@ -93,7 +93,7 @@ Update the paths in `data/truth.json` under `extra_documents`.
 ### Run
 
 ```bash
-# First run — resets database, opens browser for initial login
+# First run -- resets database, opens browser for initial login
 python -m agent.main --reset --no-exit
 
 # Normal daily run
@@ -136,12 +136,12 @@ The agent detects which ATS platform a job uses and adapts its strategy:
 | ReachMee | AUTO | ❌ | Single-page |
 | Jobylon | AUTO | ❌ | Single-page |
 | Framtiden/Zoho | AUTO | ✅ (2 steps) | Municipal jobs |
-| Workday | TRY_AUTO | ✅ (5 steps) | Complex — may need assist |
+| Workday | TRY_AUTO | ✅ (5 steps) | Complex - may need assist |
 | SuccessFactors | TRY_AUTO | ✅ (4 steps) | SAP-based |
 | SmartRecruiters | TRY_AUTO | ✅ (3 steps) | |
 | Lever | TRY_AUTO | ❌ | |
 | Greenhouse | TRY_AUTO | ✅ (3 steps) | |
-| LinkedIn | **SKIP** | — | ⛔ Never automated (ban risk) |
+| LinkedIn | **SKIP** | - | ⛔ Never automated (ban risk) |
 
 ### Assist Mode
 
@@ -163,7 +163,7 @@ The agent includes stealth measures to avoid bot detection:
 - `window.chrome` runtime spoofed
 - `navigator.plugins` faked (PDF viewer, etc.)
 - Human-like typing delays and scroll behavior
-- LinkedIn is **completely blocked** — never visits, never logs in
+- LinkedIn is **completely blocked** -- never visits, never logs in
 
 ---
 
@@ -174,8 +174,8 @@ auto-apply-sweden/
 ├── agent/                     # Core Python package
 │   ├── __init__.py            # States enum (CONFIRMED, ASSIST, etc.)
 │   ├── __main__.py            # Entry point
-│   ├── main.py                # Orchestrator — daily loop, scheduling
-│   ├── apply_runner.py        # Browser automation — form filling, submit
+│   ├── main.py                # Orchestrator -- daily loop, scheduling
+│   ├── apply_runner.py        # Browser automation -- form filling, submit
 │   ├── platform_classifier.py # Detects ATS platform from URL/HTML
 │   ├── answer_library.py      # Pattern-matched answers for form fields
 │   ├── pdf_export.py          # LaTeX → PDF generation (emoji-safe)
@@ -199,10 +199,10 @@ auto-apply-sweden/
 
 ### Key Design Decisions
 
-- **LaTeX for PDFs** — ATS systems parse LaTeX-generated PDFs better than Word. Emoji stripped, Swedish characters (ä å ö é) preserved.
-- **Multi-step form loop** — Teamtailor uses 3-step forms. The agent handles "Nästa" (Next) vs "Skicka ansökan" (Submit) correctly.
-- **Validation error detection** — After clicking submit, checks for Swedish/English error messages, `aria-invalid` attributes, and empty required fields. Falls back to Assist instead of losing the application.
-- **Progressive daily caps** — Starts at 60/day, ramps to 80 after 3 stable days, 100 after 6 days.
+- **LaTeX for PDFs** - ATS systems parse LaTeX-generated PDFs better than Word. Emoji stripped, Swedish characters (ä å ö é) preserved.
+- **Multi-step form loop** - Teamtailor uses 3-step forms. The agent handles "Nästa" (Next) vs "Skicka ansökan" (Submit) correctly.
+- **Validation error detection** - After clicking submit, checks for Swedish/English error messages, `aria-invalid` attributes, and empty required fields. Falls back to Assist instead of losing the application.
+- **Progressive daily caps** - Starts at 60/day, ramps to 80 after 3 stable days, 100 after 6 days.
 
 ---
 
@@ -277,12 +277,12 @@ We welcome contributions! This project is built for the Swedish job market but t
 
 ### Ways to contribute:
 
-- 🌍 **Add a new country** — Write a new job fetcher for your country's employment API
-- 🏢 **Add ATS platform support** — Add detection rules in `platform_classifier.py`
-- 🧠 **Improve the answer library** — Add patterns for common form questions
-- 🐛 **Fix bugs** — Check the [Issues](../../issues) tab
-- 📖 **Improve docs** — Better setup guides, translations, examples
-- 🧪 **Add tests** — We need them!
+- 🌍 **Add a new country** - Write a new job fetcher for your country's employment API
+- 🏢 **Add ATS platform support** - Add detection rules in `platform_classifier.py`
+- 🧠 **Improve the answer library** - Add patterns for common form questions
+- 🐛 **Fix bugs** - Check the [Issues](../../issues) tab
+- 📖 **Improve docs** - Better setup guides, translations, examples
+- 🧪 **Add tests** - We need them!
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 
@@ -303,17 +303,17 @@ git push origin feature/my-feature
 
 This tool automates job applications on your behalf. Please:
 
-- **Never use on LinkedIn** — Automating LinkedIn will get your account banned. This tool blocks LinkedIn by default.
-- **Review assist tabs** — Always review pre-filled applications before submitting manually.
-- **Respect rate limits** — The default cap of 60/day is reasonable. Don't crank it to 1000.
-- **Keep it legal** — This tool fills forms with YOUR real information. Don't use it to spam or mislead employers.
-- **No guarantees** — This is an open-source tool. Use at your own risk.
+- **Never use on LinkedIn** - Automating LinkedIn will get your account banned. This tool blocks LinkedIn by default.
+- **Review assist tabs** - Always review pre-filled applications before submitting manually.
+- **Respect rate limits** - The default cap of 60/day is reasonable. Don't crank it to 1000.
+- **Keep it legal** - This tool fills forms with YOUR real information. Don't use it to spam or mislead employers.
+- **No guarantees** - This is an open-source tool. Use at your own risk.
 
 ---
 
 ## 📜 License
 
-[MIT License](LICENSE) — use it, modify it, share it. Just don't blame us if something goes sideways.
+[MIT License](LICENSE) - use it, modify it, share it. Just don't blame us if something goes sideways.
 
 ---
 

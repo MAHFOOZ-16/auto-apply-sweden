@@ -34,7 +34,7 @@ from agent.tailor import _pick_city, _pick_postal, _pick_street
 logger = logging.getLogger("agent.apply_runner")
 
 # ═══════════════════════════════════════════════════════
-#  STEALTH — hide Playwright/automation markers
+#  STEALTH - hide Playwright/automation markers
 # ═══════════════════════════════════════════════════════
 
 STEALTH_JS = """
@@ -106,7 +106,7 @@ SEL_APPLY = [
     '[data-testid="apply-button"]', 'a[href*="apply"]',
 ]
 
-# FINAL submit only — "Nästa"/"Next" is handled separately
+# FINAL submit only - "Nästa"/"Next" is handled separately
 SEL_SUBMIT_FINAL = [
     'button:has-text("Skicka ansökan")',
     'button:has-text("Skicka in ansökan")',
@@ -137,7 +137,7 @@ SEL_VERIFY = [
     '[class*="captcha"]',
 ]
 
-# Confirmation signals — proof the application was received
+# Confirmation signals - proof the application was received
 CONFIRM_SIGNALS = [
     "tack för din ansökan", "thank you for applying",
     "application received", "ansökan skickad",
@@ -221,19 +221,19 @@ class ApplyRunner:
             viewport={"width": 1280, "height": 900},
             locale="en-GB", timezone_id="Europe/Stockholm",
             args=[
-                "--disable-blink-features=AutomationControlled",
-                "--no-sandbox",
+                "-disable-blink-features=AutomationControlled",
+                "-no-sandbox",
                 # Anti-detection: make Chromium look like real Chrome
-                "--disable-infobars",
-                "--disable-dev-shm-usage",
-                "--disable-background-timer-throttling",
-                "--disable-renderer-backgrounding",
-                "--disable-backgrounding-occluded-windows",
-                "--no-first-run",
-                "--no-default-browser-check",
+                "-disable-infobars",
+                "-disable-dev-shm-usage",
+                "-disable-background-timer-throttling",
+                "-disable-renderer-backgrounding",
+                "-disable-backgrounding-occluded-windows",
+                "-no-first-run",
+                "-no-default-browser-check",
                 # Reduce fingerprinting surface
-                "--disable-extensions-except=",
-                "--disable-component-extensions-with-background-pages",
+                "-disable-extensions-except=",
+                "-disable-component-extensions-with-background-pages",
             ],
         )
 
@@ -275,14 +275,14 @@ class ApplyRunner:
         url = job["url"]
         loc = job.get("location", "Sweden")
 
-        # ── BLOCK: Never automate on LinkedIn (account ban risk) ──
+        # ─ BLOCK: Never automate on LinkedIn (account ban risk) ─
         if self._is_blocked_domain(url):
-            logger.info("⛔ SKIPPED: %s — blocked domain (LinkedIn). "
+            logger.info("⛔ SKIPPED: %s - blocked domain (LinkedIn). "
                         "Apply manually at: %s",
                         job.get("title"), url)
             self.db.update_job_status(jid, States.FAILED_PERMANENT)
             self.db.log_event(jid, States.FAILED_PERMANENT,
-                              "Blocked domain — LinkedIn automation forbidden")
+                              "Blocked domain - LinkedIn automation forbidden")
             return States.FAILED_PERMANENT
 
         self.db.update_job_status(jid, States.APPLYING)
@@ -311,7 +311,7 @@ class ApplyRunner:
             #    NEVER auto-login on LinkedIn (account ban risk)
             if self._is_login_page(page):
                 if self._is_blocked_domain(page.url):
-                    logger.info("⛔ Login page on blocked domain — skipping")
+                    logger.info("⛔ Login page on blocked domain - skipping")
                     page.close()
                     return States.FAILED_PERMANENT
                 if not self._do_login(page):
@@ -326,9 +326,9 @@ class ApplyRunner:
                         platform["name"], platform["mode"],
                         platform["multi_step"])
 
-            # SKIP mode — platform is blocked (e.g. LinkedIn)
+            # SKIP mode - platform is blocked (e.g. LinkedIn)
             if platform["mode"] == "SKIP":
-                logger.info("  ⛔ Platform %s is SKIP — closing",
+                logger.info("  ⛔ Platform %s is SKIP - closing",
                             platform["name"])
                 self.db.update_job_status(jid, States.FAILED_PERMANENT)
                 self.db.log_event(jid, States.FAILED_PERMANENT,
@@ -343,7 +343,7 @@ class ApplyRunner:
                 return self._assist(job, page, artifact_dir, ss,
                                     "Verification/captcha detected")
 
-            # ④ Click Apply button (if needed — some pages go straight to form)
+            # ④ Click Apply button (if needed - some pages go straight to form)
             if not self._click_apply(page):
                 if not self._has_form(page):
                     # No apply button AND no form → ASSIST (don't close tab)
@@ -374,12 +374,12 @@ class ApplyRunner:
 
         except PlaywrightTimeout as e:
             # Timeout → fall back to ASSIST (leave tab open for human)
-            logger.warning("  ⏰ Timeout: %s — falling back to ASSIST", e)
+            logger.warning("  ⏰ Timeout: %s - falling back to ASSIST", e)
             return self._assist(job, page, artifact_dir, ss,
-                                "Timeout — page may still be usable")
+                                "Timeout - page may still be usable")
         except Exception as e:
             # Any error → fall back to ASSIST (leave tab open for human)
-            logger.warning("  ⚠️ Error: %s — falling back to ASSIST", e)
+            logger.warning("  ⚠️ Error: %s - falling back to ASSIST", e)
             try:
                 # Only assist if page is still alive
                 if not page.is_closed():
@@ -387,7 +387,7 @@ class ApplyRunner:
                                         f"Error: {type(e).__name__}")
             except Exception:
                 pass
-            # Page is dead — truly failed
+            # Page is dead - truly failed
             self._fail(jid, artifact_dir, page, ss,
                        f"{type(e).__name__}: {e}")
             try:
@@ -397,7 +397,7 @@ class ApplyRunner:
             return States.FAILED_RETRYABLE
 
     # ════════════════════════════════════════════════════════
-    #  MULTI-STEP FORM LOOP — The core V2 engine
+    #  MULTI-STEP FORM LOOP - The core V2 engine
     # ════════════════════════════════════════════════════════
 
     def _fill_and_submit_loop(self, job, page, platform,
@@ -417,7 +417,7 @@ class ApplyRunner:
             _delay(0.5, 1)
 
             # Scroll full page to trigger lazy-loaded fields, then back to top
-            # (SINGLE scroll — no second fill pass like V1)
+            # (SINGLE scroll - no second fill pass like V1)
             try:
                 page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
                 _delay(0.8, 1.2)
@@ -426,7 +426,7 @@ class ApplyRunner:
             except Exception:
                 pass
 
-            # Fill all visible fields (SINGLE PASS — no double-fill bug)
+            # Fill all visible fields (SINGLE PASS - no double-fill bug)
             unknown_count, step_cover_filled = self._fill_form(
                 page, loc, cover_text, job_keywords)
 
@@ -465,7 +465,7 @@ class ApplyRunner:
                 return self._assist(job, page, artifact_dir, ss,
                                     "Verification on form step")
 
-            # ── Decision: Submit, Next, or Assist? ──
+            # ─ Decision: Submit, Next, or Assist? ─
 
             final_btn = self._find_button(page, SEL_SUBMIT_FINAL)
             next_btn = self._find_button(page, SEL_NEXT_STEP)
@@ -475,7 +475,7 @@ class ApplyRunner:
                 if has_unknown_mandatory:
                     return self._assist(
                         job, page, artifact_dir, ss,
-                        "Unknown mandatory field(s) — needs human review")
+                        "Unknown mandatory field(s) - needs human review")
 
                 # Click final submit
                 logger.info("  🚀 Clicking FINAL submit")
@@ -486,13 +486,13 @@ class ApplyRunner:
                     logger.error("  Submit click failed: %s", e)
                     return self._assist(
                         job, page, artifact_dir, ss,
-                        "Submit button click failed — please submit manually")
+                        "Submit button click failed - please submit manually")
 
                 self._ss(page, artifact_dir, ss)
                 return self._verify_submission(job, page, artifact_dir, ss)
 
             elif next_btn:
-                # Nästa/Next — proceed to next step (NOT a submit!)
+                # Nästa/Next - proceed to next step (NOT a submit!)
                 logger.info("  ➡️  Clicking Nästa/Next (step %d)", step + 1)
 
                 # If unknown mandatory fields before Nästa → ASSIST
@@ -525,7 +525,7 @@ class ApplyRunner:
                         if has_unknown_mandatory:
                             return self._assist(
                                 job, page, artifact_dir, ss,
-                                "Unknown mandatory field(s) — generic submit")
+                                "Unknown mandatory field(s) - generic submit")
 
                         logger.info("  🚀 Clicking generic submit")
                         try:
@@ -538,18 +538,18 @@ class ApplyRunner:
                             logger.error("  Generic submit failed: %s", e)
                             return self._assist(
                                 job, page, artifact_dir, ss,
-                                "Generic submit click failed — please submit manually")
+                                "Generic submit click failed - please submit manually")
 
                 # Fallback: if platform is TRY_AUTO → assist
                 if platform["mode"] == "TRY_AUTO":
                     return self._assist(
                         job, page, artifact_dir, ss,
-                        "No submit button — TRY_AUTO platform")
+                        "No submit button - TRY_AUTO platform")
 
                 # ALL platforms: fall back to ASSIST (never close a filled form)
                 return self._assist(
                     job, page, artifact_dir, ss,
-                    "No submit button found — please submit manually")
+                    "No submit button found - please submit manually")
 
         # Exhausted all steps without finding a submit
         return self._assist(job, page, artifact_dir, ss,
@@ -721,7 +721,7 @@ class ApplyRunner:
             pass
 
     # ════════════════════════════════════════════════════════
-    #  FORM FILLING (V2 — single pass, answer library)
+    #  FORM FILLING (V2 - single pass, answer library)
     # ════════════════════════════════════════════════════════
 
     def _fill_form(self, page: Page, loc: str, cover_text: str,
@@ -1042,7 +1042,7 @@ class ApplyRunner:
                 break  # matched one target, stop
 
     # ════════════════════════════════════════════════════════
-    #  "Skriv i formulär istället" — reveals textareas
+    #  "Skriv i formulär istället" - reveals textareas
     # ════════════════════════════════════════════════════════
 
     @staticmethod
@@ -1089,7 +1089,7 @@ class ApplyRunner:
         return clicked
 
     # ════════════════════════════════════════════════════════
-    #  FILE UPLOADS (V2 — section matching with fallbacks)
+    #  FILE UPLOADS (V2 - section matching with fallbacks)
     # ════════════════════════════════════════════════════════
 
     def _upload_files(self, page: Page, resume: Path, cover: Path,
@@ -1133,7 +1133,7 @@ class ApplyRunner:
                                 i, sec[:30])
                     _delay(1, 2)
 
-                # Extras / Övriga — ONLY degree, transcript, sample_work
+                # Extras / Övriga - ONLY degree, transcript, sample_work
                 # NEVER put cover_letter here (it goes in its own slot or textarea)
                 elif (_m(sec, ["övriga dokument", "other document",
                                "övrigt", "bilaga", "additional"])
@@ -1186,7 +1186,7 @@ class ApplyRunner:
 
         if not done_cl and n >= 2:
             if cover_textarea_used:
-                # Cover letter already in textarea — use slot for extras
+                # Cover letter already in textarea - use slot for extras
                 logger.info("  ⤷ Skipping cover file (textarea used)")
                 if not done_ex and self.extra_docs:
                     try:
@@ -1253,7 +1253,7 @@ class ApplyRunner:
     def _click_upload_more(page: Page):
         """Click 'Ladda upp fler' / 'Upload more' links to reveal extra
         file input slots (Teamtailor puts only 1 slot under Övriga dokument
-        by default — you need to click this link to get more)."""
+        by default - you need to click this link to get more)."""
         for _ in range(3):  # Click up to 3 times for 3 extra docs
             clicked = False
             for sel in [
@@ -1474,9 +1474,9 @@ class ApplyRunner:
         url = page.url.lower()
         logger.info("  🔑 Login: %s", url[:60])
 
-        # NEVER auto-login on LinkedIn — will get account banned
+        # NEVER auto-login on LinkedIn - will get account banned
         if self._is_blocked_domain(url):
-            logger.warning("  ⛔ LinkedIn login blocked — NEVER automate "
+            logger.warning("  ⛔ LinkedIn login blocked - NEVER automate "
                            "LinkedIn login. Apply manually.")
             return False
 
@@ -1487,7 +1487,7 @@ class ApplyRunner:
             return False
 
     def _login_linkedin(self, page: Page) -> bool:
-        """DISABLED — LinkedIn automation causes account bans.
+        """DISABLED - LinkedIn automation causes account bans.
         This function intentionally does nothing and returns False."""
         logger.warning("  ⛔ _login_linkedin called but DISABLED. "
                         "LinkedIn automation is forbidden.")
@@ -1581,7 +1581,7 @@ class ApplyRunner:
         return False
 
     # ════════════════════════════════════════════════════════
-    #  ASSIST MODE — non-blocking (tab stays open)
+    #  ASSIST MODE - non-blocking (tab stays open)
     # ════════════════════════════════════════════════════════
 
     def _assist(self, job, page, ad, ss, reason) -> str:
@@ -1617,7 +1617,7 @@ class ApplyRunner:
         why_suitable = _generate_suitability_hint(description, self.truth)
 
         # ── Print rich cheat sheet to terminal ──
-        logger.info("🖐 ASSIST: %s @ %s — %s (tab left open)",
+        logger.info("🖐 ASSIST: %s @ %s - %s (tab left open)",
                      title, company, reason)
         print(f"\n{'='*70}")
         print(f"🖐 ASSIST: {title} @ {company}")
@@ -1634,7 +1634,7 @@ class ApplyRunner:
             print("   ┌─ Why you're suitable (copy-paste):")
             print(f"   │  {why_suitable}")
             print("   └─")
-        print("   Tab left open — complete manually when ready")
+        print("   Tab left open - complete manually when ready")
         print("   Agent continues with next job immediately")
         print(f"{'='*70}\n")
 
@@ -2016,7 +2016,7 @@ def _extract_requirements(description: str) -> List[str]:
     elif re.search(r"\b(svenska|swedish)\b.*\b(merit|plus|bonus|fördel)\b", desc_lower):
         reqs.append("Swedish is a plus (not required)")
 
-    # ── Programming languages & frameworks ──
+    # ── Programming languages & frameworks ─
     tech_patterns = {
         "Python": r"\bpython\b",
         "Java": r"\bjava\b(?!\s*script)",
@@ -2042,11 +2042,11 @@ def _extract_requirements(description: str) -> List[str]:
         if re.search(pattern, desc_lower):
             reqs.append(name)
 
-    # ── Driver's license ──
+    # ─ Driver's license ─
     if re.search(r"\b(körkort|driver.?s?\s*licen)\b", desc_lower):
         reqs.append("Driver's license mentioned")
 
-    # ── Security clearance ──
+    # ─ Security clearance ─
     if re.search(r"\b(säkerhetsprövning|security clearance|sekretess)\b", desc_lower):
         reqs.insert(0, "⚠️ Security clearance required")
 
@@ -2091,7 +2091,7 @@ def _generate_suitability_hint(description: str, truth: dict) -> str:
         "ai_ml": (
             "My master's thesis focused on AI-driven optimization using Python "
             "and TensorFlow. I implemented knowledge distillation for neural "
-            "network compression and have hands-on experience with applied "
+            "network compression and have experienced with applied "
             "machine learning from multiple coursework projects."
         ),
         "security": (
@@ -2106,7 +2106,7 @@ def _generate_suitability_hint(description: str, truth: dict) -> str:
             "deployment, plus REST API design and CI/CD automation."
         ),
         "cloud_devops": (
-            "I have hands-on experience with Docker, Kubernetes, AWS, and "
+            "I have experienced with Docker, Kubernetes, AWS, and "
             "CI/CD pipelines from coursework and personal projects. I've "
             "deployed containerized applications and built scalable "
             "infrastructure in cloud environments."
@@ -2117,9 +2117,9 @@ def _generate_suitability_hint(description: str, truth: dict) -> str:
             "predictive modeling, and data visualization."
         ),
         "embedded": (
-            "My CS background includes system-level programming with C/C++, "
+            "My CS background includes system level programming with C/C++, "
             "Linux, and networking. I have experience with embedded workflows, "
-            "IoT sensor integration, and hardware-software co-design."
+            "IoT sensor integration, and hardware-software co design."
         ),
         "general": (
             "I recently completed my MSc in Computer Science with practical "

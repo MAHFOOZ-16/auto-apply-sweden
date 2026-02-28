@@ -19,12 +19,12 @@ class AnswerLibrary:
         # Visa / sponsorship / work permit
         (r"(visa|sponsorship|uppehållstillstånd|work\s*permit|arbetstillstånd"
          r"|sponsr|tillstånd.*arbet)",
-         "Not required — I hold a valid Swedish residence permit"),
+         "Not required - I hold a valid Swedish residence permit"),
 
         # Notice period / availability / start date
         (r"(notice.?period|uppsägningstid|start.?dat|tillträd|när.*börja"
          r"|earliest.*start|available.*start|tillgänglig)",
-         "Immediate — available to start right away"),
+         "Immediate - available to start right away"),
 
         # Salary
         (r"(salary|lön|löneanspråk|löneönskemål|compensation|wage"
@@ -59,12 +59,12 @@ class AnswerLibrary:
 
         # Swedish level (text field, not radio)
         (r"(swedish.*level|svenska.*nivå|swedish.*proficien)",
-         "Basic — completed Introduction to Swedish (Grade B) "
+         "Basic - completed Introduction to Swedish (Grade B) "
          "at Your University"),
 
         # English level (text field)
         (r"(english.*level|engelska.*nivå|english.*proficien)",
-         "Fluent — all university courses completed in English"),
+         "Fluent - all university courses completed in English"),
 
         # Citizenship
         (r"(citizenship|medborgarskap|nationality|nationalitet)",
@@ -95,7 +95,7 @@ class AnswerLibrary:
             "CIFAR-10, achieving effective knowledge transfer."
         ),
         "security": (
-            "Hands-on coursework in malware analysis, software security, "
+            "Experienced coursework in malware analysis, software security, "
             "and secure software engineering. Projects include buffer "
             "overflow exploitation, YARA rule development for malware "
             "detection, DLL side-loading analysis, and threat modeling "

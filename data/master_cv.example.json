@@ -1,6 +1,6 @@
 {
   "name": "Jake Morrison",
-  "summary": "Results-driven Computer Science graduate with hands-on experience in AI/ML, cybersecurity, and full-stack development. Completed master's thesis at Ericsson Research on AI-driven network optimization, with internships at Spotify (Backend), Google (AI), and CrowdStrike (Security). Proficient in Python, TensorFlow, cloud infrastructure, and modern security tools. Passionate about building scalable, intelligent systems.",
+  "summary": "I am a Computer Science graduate with experienced in AI/ML, cybersecurity and full-stack development. Completed master's thesis at Ericsson Research on AI-driven network optimization, with internships at Spotify (Backend), Google (AI) and CrowdStrike (Security). Proficient in Python, TensorFlow, cloud infrastructure and modern security tools. Passionate about building scalable, intelligent systems.",
   "contact": {
     "name": "Jake Morrison",
     "email": "jake.morrison.dev@example.com",
@@ -22,7 +22,7 @@
   "education": [
     {
       "institution": "KTH Royal Institute of Technology",
-      "degree": "MSc Computer Science — Specialization in AI & Security",
+      "degree": "MSc Computer Science - Specialization in AI & Security",
       "location": "Stockholm, Sweden",
       "start": "Aug 2024",
       "end": "Jun 2026",
@@ -107,7 +107,7 @@
   ],
   "projects": [
     {
-      "name": "NeuralCompress — Model Compression Toolkit",
+      "name": "NeuralCompress - Model Compression Toolkit",
       "tech": "Python, PyTorch, ONNX, Docker",
       "date": "2025",
       "bullets": [
@@ -116,7 +116,7 @@
       ]
     },
     {
-      "name": "CloudCart — Full-Stack E-Commerce Platform",
+      "name": "CloudCart - Full-Stack E-Commerce Platform",
       "tech": "React, Node.js, MongoDB, Docker, Kubernetes, Stripe",
       "date": "2024",
       "bullets": [
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "name": "ThreatHunter — Malware Analysis Suite",
+      "name": "ThreatHunter - Malware Analysis Suite",
       "tech": "Python, YARA, Docker, ELK Stack",
       "date": "2024",
       "bullets": [
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "name": "SmartTraffic — IoT Traffic Optimization",
+      "name": "SmartTraffic - IoT Traffic Optimization",
       "tech": "Python, TensorFlow Lite, Raspberry Pi, MQTT",
       "date": "2023",
       "bullets": [
@@ -143,7 +143,7 @@
       ]
     },
     {
-      "name": "SecureChat — End-to-End Encrypted Messenger",
+      "name": "SecureChat - End-to-End Encrypted Messenger",
       "tech": "Go, React Native, WebSocket, Signal Protocol",
       "date": "2023",
       "bullets": [
@@ -156,19 +156,19 @@
     "AWS Certified Solutions Architect – Associate (2024)",
     "Google TensorFlow Developer Certificate (2024)",
     "CompTIA Security+ (2023)",
-    "Certified Kubernetes Application Developer — CKAD (2024)"
+    "Certified Kubernetes Application Developer - CKAD (2024)"
   ],
   "achievements": [
-    "KTH Dean's List — Top 5\\% of master's program (2025)",
-    "1st Place, HackStockholm 2025 — AI for Sustainability track (team of 4)",
-    "UC Berkeley Honors in Software Engineering — magna cum laude (2023)",
+    "KTH Dean's List - Top 5\\% of master's program (2025)",
+    "1st Place, HackStockholm 2025 - AI for Sustainability track (team of 4)",
+    "UC Berkeley Honors in Software Engineering - magna cum laude (2023)",
     "Published paper on neural network compression at NeurIPS Workshop 2025",
-    "Google Summer of Code contributor — TensorFlow project (2022)"
+    "Google Summer of Code contributor - TensorFlow project (2022)"
   ],
   "extracurricular": [
-    "Open Source Contributor — 200+ merged PRs to scikit-learn, FastAPI, and Hugging Face Transformers",
-    "KTH AI Society — Vice President, organized 12 technical workshops with 500+ attendees",
-    "Mentor at Code for Sweden — taught Python and web development to 40+ career-changers",
-    "Competitive Programming — Codeforces rating 1750+ (Expert), 50+ LeetCode contests"
+    "Open Source Contributor - 200+ merged PRs to scikit-learn, FastAPI, and Hugging Face Transformers",
+    "KTH AI Society - Vice President, organized 12 technical workshops with 500+ attendees",
+    "Mentor at Code for Sweden - taught Python and web development to 40+ career-changers",
+    "Competitive Programming - Codeforces rating 1750+ (Expert), 50+ LeetCode contests"
   ]
 }

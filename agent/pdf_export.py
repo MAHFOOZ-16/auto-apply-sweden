@@ -96,7 +96,7 @@ class PDFExporter:
             elif isinstance(d, list):
                 return [_sanitize_dict(v) for v in d]
             elif isinstance(d, str):
-                # Strip emoji (outside BMP) — keeps ä å ö é intact
+                # Strip emoji (outside BMP) -- keeps ä å ö é intact
                 s = _re.sub(r'[\U00010000-\U0010FFFF]', '', d)
                 # Strip zero-width and control chars
                 s = _re.sub(r'[\u200b\u200c\u200d\u2060\ufeff]', '', s)

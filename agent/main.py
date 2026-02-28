@@ -150,7 +150,7 @@ def reset_state(cfg: Dict[str, Any]) -> Dict[str, Any]:
 # ──────────────────────────────────────────────
 
 class Agent:
-    """Top-level orchestrator — V2 with assist mode + summary report."""
+    """Top-level orchestrator - V2 with assist mode + summary report."""
 
     def __init__(self, config: Dict[str, Any]):
         self.cfg = config
@@ -203,24 +203,24 @@ class Agent:
         except KeyboardInterrupt:
             logger.info("KeyboardInterrupt – stopping new applications")
 
-        # ── Summary of the auto-apply phase ──
+        # ─ Summary of the auto-apply phase ─
         self._generate_summary()
 
-        # ── If assist tabs are open, keep browser alive ──
+        # ─ If assist tabs are open, keep browser alive ─
         assist_count = len(self.runner.assist_tabs)
         if assist_count > 0:
             self._wait_for_assist_tabs()
             # After wait: check if any tabs still open
             remaining = len(self.runner.assist_tabs)
             if remaining > 0:
-                # User pressed Ctrl+C — DETACH from browser, leave it running
+                # User pressed Ctrl+C -- DETACH from browser, leave it running
                 self._generate_summary()
                 print(f"\n  🟢 Browser left running with {remaining} tab(s).")
                 print("     Finish your applications, then close Chrome manually.")
-                print("     Agent process exiting — your tabs are SAFE.\n")
-                logger.info("Detaching — %d assist tabs left in browser",
+                print("     Agent process exiting - your tabs are SAFE.\n")
+                logger.info("Detaching - %d assist tabs left in browser",
                             remaining)
-                # Do NOT call stop_browser() — leave Chrome alive
+                # Do NOT call stop_browser() -- leave Chrome alive
                 try:
                     self._pw_detach()
                 except Exception:
@@ -251,13 +251,13 @@ class Agent:
     def _wait_for_assist_tabs(self):
         """Keep browser alive while assist tabs are open.
         Polls every 30s. Returns when all tabs completed OR user presses Ctrl+C.
-        NEVER closes assist tabs — that's the user's job."""
+        NEVER closes assist tabs - that's the user's job."""
         assist_count = len(self.runner.assist_tabs)
         if assist_count == 0:
             return
 
         print(f"\n{'='*70}")
-        print(f"  ⏳ DAILY CAP REACHED — {assist_count} ASSIST tab(s) still open!")
+        print(f"  ⏳ DAILY CAP REACHED - {assist_count} ASSIST tab(s) still open!")
         print("")
         print("  The browser will stay open so you can finish these applications.")
         print("  The agent checks every 30s for completed tabs.")
@@ -267,10 +267,10 @@ class Agent:
                 title = page.title()[:50] if not page.is_closed() else "(closed)"
             except Exception:
                 title = "(unknown)"
-            print(f"    🖐 {jid[:20]} — {title}")
+            print(f"    🖐 {jid[:20]} -- {title}")
         print("")
         print("  When you finish all tabs, the agent exits automatically.")
-        print("  Press Ctrl+C to exit — browser stays open with your tabs.")
+        print("  Press Ctrl+C to exit - browser stays open with your tabs.")
         print(f"{'='*70}\n")
 
         try:
@@ -299,9 +299,9 @@ class Agent:
 
         except KeyboardInterrupt:
             remaining = len(self.runner.assist_tabs)
-            logger.info("Ctrl+C during assist wait — %d tabs still open",
+            logger.info("Ctrl+C during assist wait -- %d tabs still open",
                         remaining)
-            # Do NOT close tabs — just return. Caller will detach browser.
+            # Do NOT close tabs -- just return. Caller will detach browser.
 
     def _tick(self):
         now = time.time()
@@ -347,10 +347,10 @@ class Agent:
         if result in (States.CONFIRMED, States.SUBMITTED, States.UNCERTAIN):
             self.scheduler.wait_buffer()
         elif result == States.ASSIST:
-            # Non-blocking — immediate next job with minimal delay
+            # Non-blocking -- immediate next job with minimal delay
             time.sleep(random.randint(3, 8))
         else:
-            # Failed — short delay
+            # Failed -- short delay
             time.sleep(random.randint(5, 15))
 
     def _process(self, job: Dict) -> str:
@@ -519,7 +519,7 @@ class Agent:
         report_lines = [
             "",
             "═" * 60,
-            f"   JOB AGENT — DAY SUMMARY ({date_str})",
+            f"   JOB AGENT -- DAY SUMMARY ({date_str})",
             "═" * 60,
             "",
             f"   ✅ CONFIRMED:    {n_confirmed}  "

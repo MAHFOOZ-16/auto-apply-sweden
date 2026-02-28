@@ -31,7 +31,7 @@ cp data/master_cv.example.json data/master_cv.json
 ```
 agent/
 ├── main.py              # Orchestrator (start here to understand the flow)
-├── apply_runner.py      # Browser automation (the big one — ~2000 lines)
+├── apply_runner.py      # Browser automation (the big one -- ~2000 lines)
 ├── platform_classifier.py  # ATS detection rules
 ├── answer_library.py    # Form field → answer matching
 ├── job_fetcher.py       # Arbetsförmedlingen API
@@ -110,10 +110,10 @@ Common form fields that need answers:
 Currently there are no automated tests (contributions very welcome!). To test manually:
 
 ```bash
-# Dry run — fetches and ranks but doesn't apply
+# Dry run -- fetches and ranks but doesn't apply
 python -m agent.main --dry-run
 
-# Single job test — apply to one specific URL
+# Single job test -- apply to one specific URL
 python -m agent.main --test-url "https://example.com/job/123"
 
 # Reset database and start fresh
@@ -132,15 +132,15 @@ python -m agent.main --reset
 ## 🔒 Security Guidelines
 
 - **NEVER** commit personal data (`truth.json`, `master_cv.json`, `secrets/`)
-- **NEVER** add LinkedIn automation — it will get users banned
+- **NEVER** add LinkedIn automation - it will get users banned
 - Be careful with browser automation on any platform that forbids it
 - All credentials should come from `truth.json`, never hardcoded
 
 ## 💬 Communication
 
-- **Issues** — Bug reports and feature requests
-- **Discussions** — Questions, ideas, architecture decisions
-- **Pull Requests** — Code contributions
+- **Issues** - Bug reports and feature requests
+- **Discussions** - Questions, ideas, architecture decisions
+- **Pull Requests** - Code contributions
 
 ## 📜 License
 

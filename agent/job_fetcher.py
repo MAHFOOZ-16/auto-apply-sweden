@@ -14,7 +14,7 @@ logger = logging.getLogger("agent.fetcher")
 # Data/IT occupation field in Arbetsförmedlingen taxonomy
 OCCUPATION_FIELD_IT = "apaJ_2ja_LuF"
 
-# Targeted search queries — one per role category for better results
+# Targeted search queries - one per role category for better results
 SEARCH_QUERIES = [
     "software developer",
     "mjukvaruutvecklare",       # Swedish: software developer

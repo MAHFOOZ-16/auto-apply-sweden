@@ -26,7 +26,7 @@ git add .
 git diff --cached --name-only | grep -E "truth\.json|master_cv\.json|secrets/" && echo "⚠️  STOP! Personal files detected!" || echo "✅ Safe to commit"
 
 # Commit
-git commit -m "feat: initial release — AI job application agent for Sweden
+git commit -m "feat: initial release - AI job application agent for Sweden
 
 - Auto-fetch jobs from Arbetsförmedlingen API
 - Platform-aware form filling (Teamtailor, Varbi, Workday, etc.)
@@ -57,7 +57,7 @@ job-search, career, automation, open-source, teamtailor, workday
 ## Step 4: Create a Release
 
 ```bash
-git tag -a v1.0.0 -m "v1.0.0 — Initial public release"
+git tag -a v1.0.0 -m "v1.0.0 - Initial public release"
 git push origin v1.0.0
 ```
 
@@ -71,7 +71,7 @@ Then on GitHub → Releases → **Draft a new release** → Select tag `v1.0.0` 
 ### Share on:
 - **Reddit:** r/sweden, r/TillSverige, r/cscareerquestions, r/automation, r/Python
 - **Hacker News:** Show HN post
-- **LinkedIn:** (manually — don't automate this!)
+- **LinkedIn:** (manually - don't automate this!)
 - **Swedish tech communities:** Slack/Discord groups for developers in Sweden
 
 ### Suggested post title:
